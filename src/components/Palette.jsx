@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Palette({ nodes, families, onAdd }) {
+export default function Palette({ nodes, families, onAdd, dragType = 'application/x-ocean-node' }) {
   return (
     <aside className="palette">
       <div className="pane-title">Procédés</div>
@@ -17,7 +17,7 @@ export default function Palette({ nodes, families, onAdd }) {
                 className={`palette-item ${n.ported ? '' : 'todo'}`}
                 draggable
                 onDragStart={(e) => {
-                  e.dataTransfer.setData('application/x-ocean-node', n.id)
+                  e.dataTransfer.setData(dragType, n.id)
                   e.dataTransfer.effectAllowed = 'copy'
                 }}
                 onDoubleClick={() => onAdd(n.id)}

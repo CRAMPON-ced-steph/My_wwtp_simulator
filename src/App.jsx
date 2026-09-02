@@ -1,15 +1,18 @@
 import React, { useMemo, useState, useCallback } from 'react'
 import { NODE_LIST, REGISTRY } from './nodes/index.js'
-import { SLUDGE_REGISTRY } from './nodes-boues/index.js'
+import { SLUDGE_NODE_LIST, SLUDGE_REGISTRY } from './nodes-boues/index.js'
 import { UTILITY_REGISTRY } from './nodes-utilites/index.js'
 import { TRANSVERSE_REGISTRY } from './nodes-transverse/index.js'
 import { FAMILIES, runChain } from './core/engine.js'
+import { SLUDGE_FAMILIES, runSludgeChain, apportsDepuisFileEau } from './core/sludgeEngine.js'
 import { simuler } from './core/simulation.js'
 import { DEFAULT_SITE } from './core/stream.js'
 import Palette from './components/Palette.jsx'
 import Canvas from './components/Canvas.jsx'
 import Inspector from './components/Inspector.jsx'
 import Dashboard from './components/Dashboard.jsx'
+import SludgeCanvas from './components/SludgeCanvas.jsx'
+import SludgeInspector from './components/SludgeInspector.jsx'
 import { fmt } from './components/format.js'
 
 let uidCounter = 1
@@ -33,15 +36,24 @@ export default function App() {
   const [chain, setChain] = useState(DEFAULT_CHAIN)
   const [selected, setSelected] = useState('inlet')
   const [mode, setMode] = useState('reel') // 'nominal' | 'reel'
-  const [vue, setVue] = useState('filiere') // 'filiere' | 'bilan'
+  const [vue, setVue] = useState('filiere') // 'filiere' | 'boues' | 'bilan'
+
+  // filière boues éditable
+  const [bouesChain, setBouesChain] = useState(DEFAULT_BOUES)
+  const [selectedBoues, setSelectedBoues] = useState(null)
 
   const sim = useMemo(() => runChain(chain, REGISTRY, site), [chain, site])
+
+  const apports = useMemo(() => apportsDepuisFileEau(sim, REGISTRY), [sim])
+  const apportsMES = useMemo(() => apports.reduce((s, a) => s + a.MES, 0), [apports])
+  const simBoues = useMemo(() => runSludgeChain(bouesChain, SLUDGE_REGISTRY, site, apports), [bouesChain, site, apports])
+
   // la simulation complète n'est calculée que si le tableau de bord est ouvert
   const simulation = useMemo(
     () => (vue === 'bilan'
-      ? simuler({ eau: chain, boues: DEFAULT_BOUES, utilites: DEFAULT_UTILITES, transverse: DEFAULT_TRANSVERSE }, REGISTRES, site)
+      ? simuler({ eau: chain, boues: bouesChain, utilites: DEFAULT_UTILITES, transverse: DEFAULT_TRANSVERSE }, REGISTRES, site)
       : null),
-    [vue, chain, site],
+    [vue, chain, bouesChain, site],
   )
 
   const insertAt = useCallback((nodeId, index) => {
@@ -72,8 +84,39 @@ export default function App() {
     setChain((c) => c.map((x) => (x.uid === uid ? { ...x, ...patch } : x)))
   }, [])
 
+  const insertBouesAt = useCallback((nodeId, index) => {
+    setBouesChain((c) => {
+      const i = { uid: newUid(), nodeId, choices: {}, forced: {} }
+      const next = [...c]
+      next.splice(index, 0, i)
+      setSelectedBoues(i.uid)
+      return next
+    })
+  }, [])
+  const moveBouesTo = useCallback((uid, index) => {
+    setBouesChain((c) => {
+      const from = c.findIndex((x) => x.uid === uid)
+      if (from < 0) return c
+      const next = [...c]
+      const [i] = next.splice(from, 1)
+      const to = index > from ? index - 1 : index
+      next.splice(to, 0, i)
+      return next
+    })
+  }, [])
+  const removeBoues = useCallback((uid) => {
+    setBouesChain((c) => c.filter((x) => x.uid !== uid))
+    setSelectedBoues((s) => (s === uid ? null : s))
+  }, [])
+  const updateBouesInst = useCallback((uid, patch) => {
+    setBouesChain((c) => c.map((x) => (x.uid === uid ? { ...x, ...patch } : x)))
+  }, [])
+
   const selectedInst = chain.find((x) => x.uid === selected)
   const selectedStep = sim.steps.find((x) => x.uid === selected)
+
+  const selectedBouesInst = bouesChain.find((x) => x.uid === selectedBoues)
+  const selectedBouesStep = simBoues.steps.find((x) => x.uid === selectedBoues)
 
   return (
     <div className="app">
@@ -84,7 +127,8 @@ export default function App() {
         </div>
         <div className="topbar-right">
           <div className="seg">
-            <button className={vue === 'filiere' ? 'on' : ''} onClick={() => setVue('filiere')}>Filière</button>
+            <button className={vue === 'filiere' ? 'on' : ''} onClick={() => setVue('filiere')}>Filière eau</button>
+            <button className={vue === 'boues' ? 'on' : ''} onClick={() => setVue('boues')}>Filière boues</button>
             <button className={vue === 'bilan' ? 'on' : ''} onClick={() => setVue('bilan')}>Bilan</button>
           </div>
           <div className="seg">
@@ -103,6 +147,31 @@ export default function App() {
       </header>
       {vue === 'bilan' ? (
         <Dashboard simulation={simulation} />
+      ) : vue === 'boues' ? (
+        <div className="workspace">
+          <Palette
+            nodes={SLUDGE_NODE_LIST}
+            families={SLUDGE_FAMILIES}
+            onAdd={(nodeId) => insertBouesAt(nodeId, bouesChain.length)}
+            dragType="application/x-ocean-boues-node"
+          />
+          <SludgeCanvas
+            chain={bouesChain}
+            sim={simBoues}
+            apportsMES={apportsMES}
+            selected={selectedBoues}
+            onSelect={setSelectedBoues}
+            onInsert={insertBouesAt}
+            onMove={moveBouesTo}
+            onRemove={removeBoues}
+          />
+          <SludgeInspector
+            node={selectedBouesInst ? SLUDGE_REGISTRY[selectedBouesInst.nodeId] : null}
+            inst={selectedBouesInst}
+            step={selectedBouesStep}
+            onChange={(patch) => selectedBouesInst && updateBouesInst(selectedBouesInst.uid, patch)}
+          />
+        </div>
       ) : (
         <div className="workspace">
           <Palette nodes={NODE_LIST} families={FAMILIES} onAdd={(nodeId) => insertAt(nodeId, chain.length)} />
