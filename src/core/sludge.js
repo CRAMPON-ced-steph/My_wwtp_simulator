@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------
 // File boues — modèle de flux.
 //
-// OCEAN véhicule la file boues dans deux tableaux à trois dimensions, déclarés
+// Le classeur VBA véhicule la file boues dans deux tableaux à trois dimensions, déclarés
 // dans MOD_ProgrammePrincipal :
 //   TableauRecapitulatifFluxBoues(étape, type_boue, paramètre)   23 × 6 × 10
 //   boues_pollution_soluble(étape, type_boue, repère_mgL)        23 × 6 × 5
@@ -13,7 +13,7 @@
 // l'épaississement de retrouver la concentration de référence propre à chaque
 // origine de boue, et au bilan matière de se vérifier étape par étape.
 //
-// Conventions d'unités, identiques à OCEAN :
+// Conventions d'unités, identiques au classeur VBA :
 //   Q   en m³/j
 //   MES en kg/j                        (matières en suspension, part solide)
 //   MV_MES sans dimension              (en réalité MV/MS)
@@ -81,7 +81,7 @@ export const RET = { Q: 1, MES: 2, DCO: 3, DBO: 4, NK: 5, NH4: 6, NO3: 7, Pt: 8 
 export const NB_RET = 8
 
 /**
- * Origines de retour tenues séparément. OCEAN distingue ces vecteurs parce que
+ * Origines de retour tenues séparément. Le classeur distingue ces vecteurs parce que
  * le traitement des retours (ANITA Mox, Shunt, MAP) ne s'applique qu'aux jus
  * les plus chargés en azote — ceux de la digestion et de l'Athos — et non aux
  * surnageants d'épaississement ou aux condensats de séchage.

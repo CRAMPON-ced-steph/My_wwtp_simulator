@@ -7,7 +7,7 @@
 // séjour. Les MV détruites donnent le biogaz ; le reste de l'azote et du
 // phosphore libéré part au retour en tête via la pollution soluble.
 //
-// Deux passes, comme dans OCEAN :
+// Deux passes, comme dans le classeur VBA :
 //   dimensionnement()     à SRT_design       → volume du digesteur
 //   fonctionnement_reel() à SRT = V / Q_réel → production réelle de biogaz
 // La seconde passe reprend le volume de la première ; le port les enchaîne dans
@@ -287,7 +287,7 @@ export default defineSludgeNode({
         let dissous = H.ratio_DCOsol_outlet * DCO * correction_T
         s[SOL.DCO] = (dissous / t.Q) * 1000
         dst[P.ratio_DCO_MES] = (DCO - dissous) / t.MES
-        dst[P.ratio_DBO_MES] = 0 // hypothèse d'OCEAN : boues digérées non biodégradables
+        dst[P.ratio_DBO_MES] = 0 // hypothèse du classeur VBA : boues digérées non biodégradables
         // azote libéré au prorata des MV dégradées de ce type de boue
         const src_in = table[ETAPE.inlet][j]
         const ratio_NK_MV = src_in[P.MV_MES] > 0 ? src_in[P.ratio_NK_MES] / src_in[P.MV_MES] : 0

@@ -1,5 +1,5 @@
 // MBR — EXTENSION (pas un port) : aucune classe VBA dédiée dans le classeur
-// 140822_OCEAN_CCR.xlsm (seul un jeu de ratios de boues "II_MBR — A REVOIR"
+// (seul un jeu de ratios de boues "II_MBR — A REVOIR"
 // existe dans AA_collection.ratio). Ce nœud dérive du cœur biologique
 // E3/E4 (fabrique atvFaibleCharge.js) avec les adaptations classiques :
 //  - clarificateur remplacé par des membranes immergées (surface = pointe / flux)
@@ -13,9 +13,9 @@ export default makeATVFaibleCharge({
   id: 'mbr',
   label: 'MBR (bioréacteur à membranes)',
   short: 'MBR',
-  vba: '— dérivé de E3 (extension, hors OCEAN)',
+  vba: '— dérivé de E3 (extension, hors classeur VBA)',
   extension: true,
-  description: "EXTENSION hors classeur : cœur biologique de la BA faible charge (nitrification/dénitrification, bio-P, méthanol, FeCl3) avec séparation membranaire au lieu du clarificateur. Boues de ratios II_MBR ('A REVOIR' dans OCEAN).",
+  description: "EXTENSION hors classeur : cœur biologique de la BA faible charge (nitrification/dénitrification, bio-P, méthanol, FeCl3) avec séparation membranaire au lieu du clarificateur. Boues de ratios II_MBR ('A REVOIR' dans le classeur VBA).",
   G_reference: 14,
   sortie_NH4_def: 3,
   sortie_NO3_def: 5,

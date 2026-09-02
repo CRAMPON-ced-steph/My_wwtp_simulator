@@ -141,7 +141,7 @@ export function apportsDepuisFileEau(resultatFileEau, registry) {
     const MES = b.MES
     const MV = MES * (b.MV_MES || 0)
     // Les nœuds qui ne renseignent pas la composition de leurs boues la voient
-    // reconstituée depuis la table de ratios d'AA_collection, comme dans OCEAN :
+    // reconstituée depuis la table de ratios d'AA_collection, comme dans le classeur VBA :
     // DCO, DBO et NK sont rapportés aux matières volatiles, Pt aux MES.
     out.push({
       type: typeDepuisNoeud(node, s.nodeId, b.origine),

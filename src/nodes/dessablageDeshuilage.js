@@ -1,6 +1,6 @@
 // Port de C2_Dessablage_Deshuilage.cls (Sub DessablageDeshuilage)
 // Le procédé ne modifie pas la ligne d'eau (pas de rendement d'élimination
-// dans OCEAN) : il produit un flux interne de graisses (Mat_graisse_int) et
+// dans le classeur VBA) : il produit un flux interne de graisses (Mat_graisse_int) et
 // une consommation électrique (râcleurs + aération).
 import { defineNode } from '../core/engine.js'
 import { cloneStream } from '../core/stream.js'
@@ -52,7 +52,7 @@ export default defineNode({
     const electricite_racleur = H.PuissanceRacleurParOuvrage_kW * p.nb_ouvrages * CONST.NOMBRE_HEURE_PAR_JOUR
     const electricite_aeration = (p.conso_spec_surpresseur / 1000) * (p.Qair_spec * p.volume_total_m3 * p.tps_fct_air) * p.P_refoulement
     const warnings = []
-    if (vidange_MES > 0) warnings.push('50 % des MES de vidanges sont comptées dans les graisses (hypothèse OCEAN).')
+    if (vidange_MES > 0) warnings.push('50 % des MES de vidanges sont comptées dans les graisses (hypothèse du classeur VBA).')
     return {
       outNominal: cloneStream(ctx.inNominal),
       outReel: cloneStream(ctx.inReel),

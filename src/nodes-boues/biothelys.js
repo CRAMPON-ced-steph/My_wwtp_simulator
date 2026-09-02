@@ -394,7 +394,7 @@ export default defineSludgeNode({
       let dissous = H.ratio_DCO_soluble_totale * DCO * corr_T
       s[SOL.DCO] = (dissous / Qj) * 1000 + (soluble_amont[SOL.DCO] / out_Q) * 1000
       dst[P.ratio_DCO_MES] = Math.max(0, DCO - dissous) / MS
-      dst[P.ratio_DBO_MES] = 0 // hypothèse d'OCEAN : boues digérées non biodégradables
+      dst[P.ratio_DBO_MES] = 0 // hypothèse du classeur VBA : boues digérées non biodégradables
 
       // azote libéré au prorata des MV dégradées de ce type de boue
       const ratio_NK_MV = d.MV > 0 ? d.NK / d.MV : 0

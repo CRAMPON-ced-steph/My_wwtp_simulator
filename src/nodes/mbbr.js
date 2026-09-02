@@ -15,7 +15,7 @@
 // remplissage) par le même arbre de décision — factorisé ici dans
 // resoudreVolumeFilling().
 //
-// Deux passes, comme dans OCEAN :
+// Deux passes, comme dans le classeur VBA :
 //   dimensionnement()      sur l'eau nominale, à T_design  → volumes, remplissages
 //   fonctionnement_reel()  sur l'eau réelle, à T_exploit   → performances, air
 // Chaque passe contient une boucle de point fixe sur la recirculation de MLSS,

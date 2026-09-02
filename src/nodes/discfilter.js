@@ -54,7 +54,7 @@ export default defineNode({
   compute(ctx) {
     const { p, site, forced, choices } = ctx
     const warnings = []
-    if (ctx.upstream.BA_forte) warnings.push('Discfilter derrière une boue activée forte charge : configuration signalée comme incohérente dans OCEAN.')
+    if (ctx.upstream.BA_forte) warnings.push('Discfilter derrière une boue activée forte charge : configuration signalée comme incohérente dans le classeur VBA.')
 
     const pass = (s) => {
       const MESin = conc(s, 'MES')

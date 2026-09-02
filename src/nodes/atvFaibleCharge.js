@@ -3,7 +3,7 @@
 // Les deux classes VBA sont identiques à trois constantes près :
 //   E3 : G_reference = 14 j, sortie_NH4 = 3 mg/L, sortie_NO3 = 5 mg/L
 //   E4 : G_reference = 20 j, sortie_NH4 = 1 mg/L, sortie_NO3 = 6 mg/L
-// Le MBR (absent d'OCEAN) est dérivé du même cœur biologique, membranes en
+// Le MBR (absent du classeur VBA) est dérivé du même cœur biologique, membranes en
 // remplacement du clarificateur (extension signalée, pas un port).
 //
 // Fidélités volontaires au VBA (voir README) :
@@ -472,7 +472,7 @@ export function makeATVFaibleCharge(cfg) {
       const electricite_recirculation_MLSS = ratioElec(p.recirculation_MLSS_pompe_rdt) * recirculation_MLSS_taux * stockage_Q * p.recirculation_MLSS_P_refoulement
       const electricite_recirculation = membrane ? 0 : ratioElec(p.recirculation_pompe_rdt) * recirculation_taux0 * stockage_Q * p.recirculation_P_refoulement
       const electricite_extraction = ratioElec(p.extraction_pompe_rdt) * boues_Q * p.extraction_P_refoulement
-      // membranes (extension MBR, hors OCEAN)
+      // membranes (extension MBR, hors classeur VBA)
       let electricite_membranes = 0, electricite_permeat = 0
       if (membrane) {
         electricite_membranes = (p.SADm * p.membrane_cyclage * surface_membranes * CONST.NOMBRE_HEURE_PAR_JOUR * p.membrane_P_refoulement * p.surpresseur_conso_spec) / 1000

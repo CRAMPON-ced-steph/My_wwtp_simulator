@@ -122,7 +122,6 @@ export default function App() {
     <div className="app">
       <header className="topbar">
         <div className="brand">
-          <span className="brand-mark">OCEAN</span>
           <span className="brand-sub">Simulateur filière eau · port React des modules VBA</span>
         </div>
         <div className="topbar-right">

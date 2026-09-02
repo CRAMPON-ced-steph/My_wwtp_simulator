@@ -15,14 +15,14 @@
 // appliquée, la nitrification se répartissant entre le média (vitesse
 // surfacique) et la liqueur mixte (vitesse massique).
 //
-// Deux passes, comme dans OCEAN :
+// Deux passes, comme dans le classeur VBA :
 //   dimensionnement()     sur l'eau nominale, à T_design  → volumes
 //   fonctionnement_reel() sur l'eau réelle, à T_exploit   → performances, air
 //
 // Écarts au VBA, volontaires et signalés (voir README) :
 //  - dimensionnement() est relancé jusqu'à stabilisation des variables qu'il
 //    corrige d'un appel à l'autre (reox_nit, boues_methanol, DBO_sortie,
-//    recirculation_taux, NO3_last_aerated_tank). Dans OCEAN ces corrections ne
+//    recirculation_taux, NO3_last_aerated_tank). Dans le classeur VBA ces corrections ne
 //    prennent effet qu'à l'itération suivante du programme principal ;
 //  - la borne haute de la dichotomie de dimensionne_config_4_6 est corrigée :
 //    le VBA écrit `1000 * nit / 24 * MES * rate`, c'est-à-dire une

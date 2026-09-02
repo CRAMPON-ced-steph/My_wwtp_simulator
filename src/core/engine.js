@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
 // Moteur de simulation : enchaîne les nœuds procédé dans l'ordre de la filière,
-// en reproduisant la séquence d'OCEAN : dimensionnement (eau nominale) puis
+// en reproduisant la séquence du classeur VBA : dimensionnement (eau nominale) puis
 // fonctionnement réel (eau réelle = nominale × NC_*) puis consommation élec.
 //
 // Chaque nœud est un objet :
@@ -11,7 +11,7 @@
 //     compute: (ctx) => { outNominal, outReel, sludge?, eauxSales?, results, electricity, warnings }
 //   }
 // ctx = { site, inNominal, inReel, choices, p, forced, upstream }
-//   p[key]      = valeur effective (forcée si présente, sinon défaut) — "Ve" dans OCEAN
+//   p[key]      = valeur effective (forcée si présente, sinon défaut) — "Ve" dans le classeur VBA
 //   forced[key] = valeur forcée ou undefined                          — "Vr"
 // ---------------------------------------------------------------------------
 import { cloneStream, nominalStream, reelStream } from './stream.js'
@@ -63,7 +63,7 @@ export function resolveParams(node, ctx0, forced = {}) {
  * chain = [{ uid, nodeId, choices, forced }]
  * registry = { [nodeId]: nodeDef }
  *
- * Rebouclage des eaux sales (boucle iteration_ES d'OCEAN) : les nœuds qui
+ * Rebouclage des eaux sales (boucle iteration_ES du classeur) : les nœuds qui
  * produisent un flux `eauxSales` (biofiltres, Discfilter, filtre sable) le
  * voient renvoyé en tête de filière. Si un nœud "decantation-eaux-sales" (H1)
  * est présent, les eaux sales y sont d'abord traitées et c'est son surnageant

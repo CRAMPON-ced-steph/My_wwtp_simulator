@@ -3,7 +3,7 @@
 // variables ByRef (Q, DCO, DBO, MES, NK, NH4, NO3, Pt, Sh) passées de procédé
 // en procédé dans MOD_ProgrammePrincipal.prgm_principal.
 //
-// Convention OCEAN conservée :
+// Convention conservée :
 //   Q   en m³/j
 //   DCO, DBO, MES, NK, NH4, NO3, Pt, Sh en kg/j  (charges, pas concentrations)
 // ---------------------------------------------------------------------------
@@ -118,7 +118,7 @@ export const DEFAULT_SITE = {
   NC_NH4: 0.8,
   NC_NO3: 0.8,
   NC_Pt: 0.8,
-  // débit de retours en tête (m³/j) — Q_retour dans OCEAN
+  // débit de retours en tête (m³/j) — Q_retour dans le classeur VBA
   Q_retour: 0,
 }
 

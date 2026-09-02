@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-// Hypothèses globales — extraites de l'onglet "Hypothèses" du classeur
-// 140822_OCEAN_CCR.xlsm et des constantes pd_* de MOD_ProgrammePrincipal.
+// Hypothèses globales — extraites de l'onglet "Hypothèses" du classeur VBA
+// et des constantes pd_* de MOD_ProgrammePrincipal.
 // Le nom de la cellule d'origine est indiqué en commentaire.
 // ---------------------------------------------------------------------------
 export const CONST = {
@@ -133,7 +133,7 @@ export function rendementMoteur(puissance_kW) {
 }
 
 /**
- * Rendement global d'une pompe (machine × moteur) selon la logique OCEAN :
+ * Rendement global d'une pompe (machine × moteur) selon la logique du classeur :
  * puissance = Q/3600 × g × P / rdt_machine, puis rendement moteur par la loi log.
  */
 export function rendementPompeGlobal(Q_unitaire_m3h, P_mCE, rdt_machine = 0.7) {
