@@ -1,18 +1,25 @@
-// MBR — ABSENT du classeur 140822_OCEAN_CCR.xlsm : aucune classe VBA dédiée
-// (seul un jeu de ratios de boues "II_MBR — A REVOIR" existe dans AA_collection.ratio).
-// Squelette à compléter à partir de la classe BA faible charge (E3) + membranes.
-import { passthrough } from './_stub.js'
+// MBR — EXTENSION (pas un port) : aucune classe VBA dédiée dans le classeur
+// 140822_OCEAN_CCR.xlsm (seul un jeu de ratios de boues "II_MBR — A REVOIR"
+// existe dans AA_collection.ratio). Ce nœud dérive du cœur biologique
+// E3/E4 (fabrique atvFaibleCharge.js) avec les adaptations classiques :
+//  - clarificateur remplacé par des membranes immergées (surface = pointe / flux)
+//  - MES bassin par défaut 8 g/L, MES sortie 1 mg/L
+//  - boues extraites à la concentration du bassin (pas de recirculation clarif)
+//  - électricité : air de décolmatage (SADm × surface) + pompes de perméat,
+//    en plus de l'aération biologique, l'agitation et la recirculation interne
+import { makeATVFaibleCharge } from './atvFaibleCharge.js'
 
-export default passthrough({
+export default makeATVFaibleCharge({
   id: 'mbr',
   label: 'MBR (bioréacteur à membranes)',
   short: 'MBR',
-  family: 'secondaire',
-  vba: '— (non modélisé dans OCEAN)',
-  description: "Non modélisé dans le classeur source. À dériver de la boue activée faible charge : clarificateur remplacé par des membranes (flux, aération de décolmatage, perméat).",
-  params: [
-    { key: 'flux_membranes_L_m2h', label: 'Flux net de filtration', unit: 'L/(m²·h)', group: 'Membranes', default: 20 },
-    { key: 'MES_bassin', label: 'MES dans le bassin', unit: 'g/L', group: 'Membranes', default: 8 },
-    { key: 'SAD_m', label: "Air de décolmatage spécifique", unit: 'Nm³/(m²·h)', group: 'Membranes', default: 0.3 },
-  ],
+  vba: '— dérivé de E3 (extension, hors OCEAN)',
+  extension: true,
+  description: "EXTENSION hors classeur : cœur biologique de la BA faible charge (nitrification/dénitrification, bio-P, méthanol, FeCl3) avec séparation membranaire au lieu du clarificateur. Boues de ratios II_MBR ('A REVOIR' dans OCEAN).",
+  G_reference: 14,
+  sortie_NH4_def: 3,
+  sortie_NO3_def: 5,
+  origineEB: 'II_MBR',
+  origineED: 'II_MBR',
+  membrane: { MES_bassin_def: 8, flux_def: 40, SADm_def: 0.3 },
 })

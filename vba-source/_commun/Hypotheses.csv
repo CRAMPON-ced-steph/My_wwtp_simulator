@@ -1,0 +1,177 @@
+procédé;paramètre considéré;;nom cellule;valeur attribuée;unité;remarques
+GENERALITES;;;;;;
+SURPRESSEURS D'AIR;;surpresseur gamme pression valeur limite Px1;hyp_surpresseur_gamme_Px;6;mCE;obj: obtenir variation comme relèvement (défini avec G. MANIC, J-L. MILLION, P. JOUAFFRE)
+;;surpresseur gamme pression valeur limite Px2;;8;mCE;obj: obtenir variation comme relèvement (défini avec G. MANIC, J-L. MILLION, P. JOUAFFRE)
+;;surpresseur_gamme_debit_valeur limite Qx1;;;;non défini pour le moment
+;;conso spec roots 0 -> Px1;hyp_surpresseur_conso_spec;5;Wh/(Nm3.mCE);manque retour expérience pour le moment (à compléter avec personnes citées ci-dessus)
+;;conso spec roots Px1 -> Px2;;5;Wh/(Nm3.mCE);manque retour expérience pour le moment (à compléter avec personnes citées ci-dessus)
+;;conso spec roots Px2 -> infini;;5;Wh/(Nm3.mCE);manque retour expérience pour le moment (à compléter avec personnes citées ci-dessus)
+;;conso spec vis 0 -> Px1;;3.8;Wh/(Nm3.mCE);manque retour expérience pour le moment (à compléter avec personnes citées ci-dessus)
+;;conso spec vis Px1 -> Px2;;3.8;Wh/(Nm3.mCE);manque retour expérience pour le moment (à compléter avec personnes citées ci-dessus)
+;;conso spec vis Px2 -> infini;;3.8;Wh/(Nm3.mCE);manque retour expérience pour le moment (à compléter avec personnes citées ci-dessus)
+;;conso spec turbo 0 -> Px1;;3.5;Wh/(Nm3.mCE);manque retour expérience pour le moment (à compléter avec personnes citées ci-dessus)
+;;conso spec turbo Px1 -> Px2;;3.5;Wh/(Nm3.mCE);manque retour expérience pour le moment (à compléter avec personnes citées ci-dessus)
+;;conso spec turbo Px2 -> infini;;3.5;Wh/(Nm3.mCE);manque retour expérience pour le moment (à compléter avec personnes citées ci-dessus)
+;;Pmaximale conseillée pour les roots;hyp_surpresseur_roots_Pmax_conseillee;8;mCE;G. MANIC
+DIFFUSION O2 (facteur K);;hauteur des diffuseurs dans les bassins de BA;hyp_insufflation_bulles_hauteur_diffuseur;0.25;m;BA, MBBR, HybAS
+;;calcul de la surpression delta_P coef a0;hyp_insufflation_deltaP_a0;0.35;;
+;;calcul de la surpression delta_P coef a1;hyp_insufflation_deltaP_a1;10.33;;
+;;calcul Patm coef P0;hyp_calcul_Patm_coef;101325;Pa;
+;;calcul Patm coef a0;;1;;
+;;calcul Patm coef a1;;-2.25577e-05;;
+;;calcul Patm coef a2;;5.25588;;
+;;calcul O2 saturation à T,P0 coef a0;hyp_calcul_O2sat_T_P0_coef_a;14.628;;
+;;calcul O2 saturation à T,P0 coef a1;;-0.4223;;
+;;calcul O2 saturation à T,P0 coef a2;;0.0102;;
+;;calcul O2 saturation à T,P0 coef a3;;-0.0002;;
+;;calcul O2 saturation à T,P0 coef a4;;1e-06;;
+;;facteur Bêta;hyp_calcul_facteurK_facteur_Beta;0.95;;compris entre 0,95 et 0,99
+;;correctif T coef correction;hyp_transfertO2_facteurK_correction_T;1.024;;
+;;correctif T valeur de Tréférence;hyp_transfertO2_facteurK_Tref;20;°C;
+PARAMETRES BIOLOGIQUES;;assimilation du N;hyp_II_assimilation_N;0.05;kgN/kgDBOéliminée;
+;;assimilation du P;hyp_II_assimilation_P;0.01;kgP/kgDBOéliminée;
+;;besoins en O2 nit;hyp_ratio_O2_nit;4.57;kgO2/kgNnit;
+;;besoins en O2 dénit;hyp_ratio_O2_denit;-2.86;kgO2/kgNdénit;négatif car on évite la consommation d'O2 grâce à l'O lié des nitrates
+VALEURS ADMISES;;ratio de kg d'O2 par Nm3 air;hyp_ratio_kgO2_Nm3air;0.3;kgO2/Nm3air;
+CONSTANTES;;masse volumique de l'effluent brut;hyp_masse_volumique_effluent_brut;1000;kg/m^3;
+EAU;;;;;;
+TRAITEMENT SULFURES;;valeur de sulfures limite risque de bulking et de filamenteuses;;10;mg/L;entre 10 et 20 mg/L suivant le Dochtech n°12
+RELEVEMENT;;rdt centrifuge Q < 100 m3/h;hyp_relevement_rdt_pompe_Qnominal;0.637;-;revu avec P. JOUAFFRE et C. AMIEL (07/11)
+;;rdt centrifuge 100 m3/h < Q < 300 m3/h;;0.779;-;revu avec P. JOUAFFRE et C. AMIEL (07/11)
+;;rdt centrifuge Q > 300 m3/h;;0.798;-;revu avec P. JOUAFFRE et C. AMIEL (07/11)
+;;rdt pompe tube Q < 100 m3/h;;0;-;revu avec P. JOUAFFRE et C. AMIEL (07/11)
+;;rdt pompe tube 100 m3/h < Q < 300 m3/h;;0;-;revu avec P. JOUAFFRE et C. AMIEL (07/11)
+;;rdt pompe tube Q > 300 m3/h;;0.76;-;revu avec P. JOUAFFRE et C. AMIEL (07/11)
+;;rdt vis Archimède Q < 100 m3/h;;0;-;revu avec P. JOUAFFRE et C. AMIEL (07/11)
+;;rdt vis Archimède 100 m3/h < Q < 300 m3/h;;0.57;-;revu avec P. JOUAFFRE et C. AMIEL (07/11)
+;;rdt vis Archimède Q > 300 m3/h;;0.608;-;revu avec P. JOUAFFRE et C. AMIEL (07/11)
+;;rdt Q/2 centrifuge Q < 100 m3/h;hyp_relevement_rdt_pompe_Q_2;0.609338336752294;-;Karassik (1/etah-1)/(1/etah0-1)=(N0/N)^017*(mu/mu0)^0,17 avec mu=mu0 et N=0,5*N0
+;;rdt Q/2 centrifuge 100 m3/h < Q < 300 m3/h;;0.7580490958543538;-;d'après Karassik
+;;rdt Q/2 centrifuge Q > 300 m3/h;;0.7783377759471269;-;d'après Karassik
+;;rdt Q/2 pompe tube Q < 100 m3/h;;0;-;d'après Karassik
+;;rdt Q/2 pompe tube 100 m3/h < Q < 300 m3/h;;0;-;d'après Karassik
+;;rdt Q/2 pompe tube Q > 300 m3/h;;0.7378540225639851;-;d'après Karassik
+;;rdt Q/2 vis Archimède Q < 100 m3/h;;0;-;d'après Karassik
+;;rdt Q/2 vis Archimède 100 m3/h < Q < 300 m3/h;;0.5409123576853216;-;d'après Karassik
+;;rdt Q/2 vis Archimède Q > 300 m3/h;;0.5795869517547145;-;d'après Karassik
+;;rdt variateur fréquence;hyp_relevement_rdt_variateur;0.98;-;revu avec P. JOUAFFRE et C. AMIEL (07/11)
+DESSABLAGE-DESHUILAGE;;ratio DBO/DCO graisses extraites;hyp_dessabl_degraiss_graisse_DBO_DCO;0.9;-;
+;;conso élec;hyp_dessabl_degraiss_conso_elec;8.36;Wh/m3;sur eau brute au nominal
+PRIMAIRE (simple+réactifs);;MV/MES boues sans physico-chimie;hyp_dec_I_boues_MV_MES;0.68;-;si réactif, on réduit les MV/MES suivant la dose de FeCl3
+;;diamètre limite de décanteur (changement Pw installée);hyp_dec_I_diametre_limite;32;m;vu avec P. JOUAFFRE (07/11)
+;;Pw râcleur installée diamètre < Dlimite;hyp_dec_I_Pw_racleur_inf_Dlim;0.55;kW;vu avec P. JOUAFFRE (07/11)
+;;Pw râcleur installée diamètre > Dlimite;hyp_dec_I_Pw_racleur_sup_Dlim;0.75;kW;vu avec P. JOUAFFRE (07/11)
+PRIMAIRE REACTIFS;;ratio Psoluble / Ptotal;hyp_dec_I_ratio_Psol_P;0.7;-;compartimentation eau brute
+;;ratio PO4 / Psoluble;hyp_dec_I_ratio_PO4_Psol;0.8;-;compartimentation eau brute
+;;conso élec préparation polymère;hyp_dec_I_elec_prepa_polymere;0.88;Wh/m3traité;ratio sur le débit entrant (moyenne mesures sites)
+;;conso élec pompage polymère;hyp_dec_I_elec_pompage_polymere;0.705;Wh/m3traité;ratio sur le débit entrant (moyenne mesures sites)
+;;conso élec injection FeCl3;hyp_dec_I_elec_injection_FeCl3;0.35;Wh/m3traité;ratio sur le débit entrant (moyenne mesures sites)
+;;conso élec microsable;hyp_dec_I_elec_microsable;0.3;Wh/m3traité;ratio sur le débit entrant (moyenne mesures sites)
+;;autres consommations électriques;hyp_dec_I_elec_divers;1.0866261398176291;Wh/m3traité;reprise vidanges partielles, horizontale à écumes
+;;conso élec agitation coagulation;hyp_dec_I_conso_elec_coagulation_agitation;1.425;Wh/m3traité;ratio sur le débit entrant (moyenne mesures sites)
+;;conso élec agitation floculation;hyp_dec_I_conso_elec_floculation_agitation;1.5;Wh/m3traité;ratio sur le débit entrant (moyenne mesures sites)
+SECONDAIRE (tous process);;;;;;
+BA (tous types);;"charge radier max ""râclé""";hyp_II_BA_charge_radier_max;5;kg/(m2.h);vu avec C. AMIEL
+;;"charge radier max ""râclé-sucé""";;7.5;kg/(m2.h);vu avec C. AMIEL
+;;"charge radier max ""Kruger""";;9;kg/(m2.h);vu avec C. AMIEL
+;;rdt dissoultion eau claire fines bulles (H>=Hlim);hyp_II_BA_rdt_dissolution_O2_eau_claire;5.8;%/m;faible charge et aération prolongée / modif DCA 20/05/14
+;;rdt dissoultion eau claire moyennes bulles;;2.5;%/m;
+;;rdt dissoultion eau claire fines bulles;;5.8;%/m;forte et moyenne charge / modif DCA 20/05/14
+;;Hlimite pour utiliser la relation (faible charge et aération prolongée);;6;m;valeur limite d'utilisation de la relation / modif DCA 20/05/14
+;;rdt dissoultion eau claire fines bulles (H<Hlim) pente;;-0.18;%/m2;relation sur la hauteur (faible charge et aération prolongée) / modif DCA 20/05/14
+;;rdt dissoultion eau claire fines bulles (H<Hlim) ordonnée origine;;6.88;%/m;relation sur la hauteur (faible charge et aération prolongée) / modif DCA 20/05/14
+;;ASB brosses;hyp_II_BA_aerateur_surface_ASB;1.7;kgO2transféré/kWh;littérature et revu avec P. JOUAFFRE
+;;ASB turbines lentes;;1.65;kgO2transféré/kWh;littérature et revu avec P. JOUAFFRE
+;;ASB turbines rapides;;1.2;kgO2transféré/kWh;littérature et revu avec P. JOUAFFRE
+;;charge massique maximale pour calcul rdt DBO;hyp_II_BA_rdtDBO_FtoM_max;1.9;kgDBO/(kgMES.j);
+;;courbe rdt DBO après primaire coef a(0);hyp_II_BA_rdtDBO_coef_ED;0.9549;;courbe de l'Aquademy (forme polynômiale)
+;;courbe rdt DBO après primaire coef a(1);;-0.0966;;
+;;courbe rdt DBO après primaire coef a(2);;-0.4705;;
+;;courbe rdt DBO après primaire coef a(3);;0.1798;;
+;;courbe rdt DBO eau brute coef a(0);hyp_II_BA_rdtDBO_coef_EB;0.9854;;courbe de l'Aquademy (forme polynômiale)
+;;courbe rdt DBO eau brute coef a(1);;-0.2053;;
+;;courbe rdt DBO eau brute coef a(2);;-0.2472;;
+;;courbe rdt DBO eau brute coef a(3);;0.1104;;
+;;courbe facteur alpha fines bulles cte;hyp_II_BA_alpha_finebulle_a0;0.51;;vu avec C. AMIEL et K. SORENSEN
+;;courbe facteur alpha fines bulles coef MVS;hyp_II_BA_alpha_finebulle_aMVS;-0.062;;
+;;courbe facteur alpha fines bulles coef Geq;hyp_II_BA_alpha_finebulle_aGeq;0.019;;
+;;correction facteur alpha aération (sauf fines bulles) coeff a0;hyp_II_BA_alpha_correction_MES_a0;1.0007;;si C>5g/L --> dégradation du facteur alpha
+;;correction facteur alpha aération (sauf fines bulles) coeff a1;hyp_II_BA_alpha_correction_MES_a1;-0.035;L/g;
+;;correction facteur alpha aération (sauf fines bulles) Cref;hyp_II_BA_alpha_correction_MES_Cref;5;g/L;
+;;valeur limite pour la décantation (produit de C_recirc*SVI);hyp_II_BA_facteur_boues_Clim;120;mL/L;valable sur BA mais pas sur les SBR
+;;puissance agitation bassin aéré;hyp_II_BA_agitation_aeree_W_m3;0;W/m3bassin;
+;;puissance agitation bassin anoxie;hyp_II_BA_agitation_anoxie_W_m3;3;W/m3bassin;
+;;puissance agitation chenal;hyp_II_BA_agitation_chenal_W_m3;3;W/m3bassin;
+;;puissance agitation anaérobie;hyp_II_BA_agitation_anaerobie_W_m3;10;W/m3bassin;
+;;temps de fonctionnement de l'agitation;hyp_II_BA_agitation_tps fct;24;h/j;
+;;température de référence pour biologie (âge de boues, FtoM,…);hyp_II_BA_bio_equiv_Tref;12;°C;
+;;coefficient de correction en température;hyp_II_BA_bio_equiv_correctionT;1.072;;
+;;calcul de la charge massique avec âge de boues coef a0;hyp_II_BA_charge_massique_a0;1.3908;;
+;;calcul de la charge massique avec âge de boues coef a1;hyp_II_BA_charge_massique_a1;0.4959;;
+;;besoins en O2 DBO + respiration coef a0;hyp_II_BA_besoinO2_DBO_resp_a0;0.56;;"source ATV relation avec l'âge de boues et la température
+rate_O2_DBOresp = a0 + ( a1 * G * corrT ^ ( T - Tref ) ) / (1 + a2 * G * corrT ^ ( T - Tref ) )"
+;;besoins en O2 DBO + respiration coef a1;hyp_II_BA_besoinO2_DBO_resp_a1;0.15;;
+;;besoins en O2 DBO + respiration coef a2;hyp_II_BA_besoinO2_DBO_resp_a2;0.17;;
+;;correction en température pour formule ATV;hyp_II_BA_besoinO2_DBO_resp_correctionT;1.072;;
+;;température de référence pour formule ATV;hyp_II_BA_besoinO2_DBO_resp_Tref;15;;
+Filtration tertiaire sur sable;;Pression eau de lavage ponce;hyp_III_filtrasable_P_eau_lavage;8.2;mCE;fiche P. JOUAFFRE corrigée par K. GAID
+;;Pression eau de lavage schiste TE <2,5 H 1m;;7.2;mCE;
+;;Pression eau de lavage schiste TE <2,5 h 2m;;8.4;mCE;
+;;Pression eau de lavage sable fin TE~1;;7.8;mCE;
+;;Pression eau de lavage sable TE>1,35;;10;mCE;
+;;Pression eau de lavage bicouche sable ponce 1 m;;7.4;mCE;
+;;Pression eau de lavage bicouche sable ponce 2 m;;8.6;mCE;
+;;Pression air de lavage ponce;hyp_III_filtrasable_P_air_lavage;4.1;mCE;fiche P. JOUAFFRE corrigée par K. GAID
+;;Pression air de lavage schiste TE <2,5 H 1m;;3.2;mCE;
+;;Pression air de lavage schiste TE <2,5 h 2m;;4.4;mCE;
+;;Pression air de lavage sable fin TE~1;;3.5;mCE;
+;;Pression air de lavage sable TE>1,35;;6.1;mCE;
+;;Pression air de lavage bicouche sable ponce 1 m;;3.7;mCE;
+;;Pression air de lavage bicouche sable ponce 2 m;;4.8;mCE;
+;;Conso (par m2 de filtration et lavage) eau de lavage ponce;hyp_III_filtrasable_eau_lavage_m3_m2_lavage;6;m3/(m2.lavage);fiche P. JOUAFFRE corrigée par K. GAID
+;;Conso (par m2 de filtration et lavage) eau de lavage schiste TE <2,5 H 1m;;11;m3/(m2.lavage);
+;;Conso (par m2 de filtration et lavage) eau de lavage schiste TE <2,5 h 2m;;13;m3/(m2.lavage);
+;;Conso (par m2 de filtration et lavage) eau de lavage sable fin TE~1;;4;m3/(m2.lavage);
+;;Conso (par m2 de filtration et lavage) eau de lavage sable TE>1,35;;9;m3/(m2.lavage);
+;;Conso (par m2 de filtration et lavage) eau de lavage bicouche sable ponce 1 m;;7;m3/(m2.lavage);
+;;Conso (par m2 de filtration et lavage) eau de lavage bicouche sable ponce 2 m;;9;m3/(m2.lavage);
+;;Capacité de rétention ponce;hyp_III_filtrasable_capacite_retention;4.5;kgMES/m3;fiche P. JOUAFFRE corrigée par K. GAID
+;;Capacité de rétention schiste TE <2,5 H 1m;;3;kgMES/m3;
+;;Capacité de rétention schiste TE <2,5 h 2m;;4.5;kgMES/m3;
+;;Capacité de rétention sable fin TE~2;;1.2;kgMES/m3;
+;;Capacité de rétention sable TE>1,36;;3.5;kgMES/m3;
+;;Capacité de rétention bicouche sable ponce 1 m;;2;kgMES/m3;
+;;Capacité de rétention bicouche sable ponce 2 m;;4;kgMES/m3;
+;;Vitesse de filtration ponce;hyp_III_filtrasable_vitesse_filtration;15;m/h;fiche P. JOUAFFRE corrigée par K. GAID
+;;Vitesse de filtration schiste TE <2,5 H 1m;;10;m/h;
+;;Vitesse de filtration schiste TE <2,5 h 2m;;15;m/h;
+;;Vitesse de filtration sable fin TE~3;;6;m/h;
+;;Vitesse de filtration sable TE>1,37;;15;m/h;
+;;Vitesse de filtration bicouche sable ponce 1 m;;10;m/h;
+;;Vitesse de filtration bicouche sable ponce 2 m;;15;m/h;
+;;Hauteur de matériau ponce;hyp_III_filtrasable_hauteur_materiau;2;m;fiche P. JOUAFFRE corrigée par K. GAID
+;;Hauteur de matériau schiste TE <2,5 H 1m;;1;m;
+;;Hauteur de matériau schiste TE <2,5 h 2m;;2;m;
+;;Hauteur de matériau sable fin TE~4;;1;m;
+;;Hauteur de matériau sable TE>1,38;;2;m;
+;;Hauteur de matériau bicouche sable ponce 1 m;;1;m;
+;;Hauteur de matériau bicouche sable ponce 2 m;;2;m;
+;;Vitesse eau de lavage ponce;hyp_III_filtrasable_eau_lavage_vitesse;35;m/h;fiche P. JOUAFFRE corrigée par K. GAID
+;;Vitesse eau de lavage schiste TE <2,5 H 1m;;60;m/h;
+;;Vitesse eau de lavage schiste TE <2,5 h 2m;;80;m/h;
+;;Vitesse eau de lavage sable fin TE~5;;25;m/h;
+;;Vitesse eau de lavage sable TE>1,39;;60;m/h;
+;;Vitesse eau de lavage bicouche sable ponce 1 m;;35;m/h;
+;;Vitesse eau de lavage bicouche sable ponce 2 m;;35;m/h;
+;;Vitesse air de lavage ponce;hyp_III_filtrasable_air_lavage_vitesse;55;Nm/h;fiche P. JOUAFFRE corrigée par K. GAID
+;;Vitesse air de lavage schiste TE <2,5 H 1m;;50;Nm/h;
+;;Vitesse air de lavage schiste TE <2,5 h 2m;;55;Nm/h;
+;;Vitesse air de lavage sable fin TE~6;;50;Nm/h;
+;;Vitesse air de lavage sable TE>1,40;;55;Nm/h;
+;;Vitesse air de lavage bicouche sable ponce 1 m;;50;Nm/h;
+;;Vitesse air de lavage bicouche sable ponce 2 m;;50;Nm/h;
+;;Surface maximale d'un filtre;hyp_III_filtrasable_surface_unitaire_max;125;m2;fiche P. JOUAFFRE corrigée par K. GAID
+;;Nombre minimal de filtres;hyp_III_filtrasable_nb_filtres_mini;4;-;fiche P. JOUAFFRE corrigée par K. GAID
+;;Temps de fonctionnement de l'air de lavage par lavage;hyp_III_filtrasable_air_lavage_tps_fct_min_lavage;9;min/lavage;fiche P. JOUAFFRE corrigée par K. GAID
+;;Temps de retour des eaux sales;hyp_III_filtrasable_pompe_ES_tps_fct;18;h/j;fiche P. JOUAFFRE corrigée par K. GAID
+BOUE;;;;;;

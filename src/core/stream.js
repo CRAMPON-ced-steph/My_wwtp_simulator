@@ -107,7 +107,8 @@ export const DEFAULT_SITE = {
   T_eau_design: 12, // °C
   T_eau_exploit: 15, // °C
   altitude: 100, // m
-  pointe_TP: 3, // coefficient de pointe hydraulique temps de pluie (-)
+  pointe_TP: 3,
+  pointe_TS: 2, // coefficient de pointe temps sec (Biostyr) // coefficient de pointe hydraulique temps de pluie (-)
   // pourcentage de charge réelle (NC_*) : réel = NC × nominal
   NC_Q: 0.8,
   NC_DCO: 0.8,
